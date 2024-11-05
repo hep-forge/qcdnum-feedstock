@@ -1,0 +1,40 @@
+{% set versions = {
+    "18-00/00" : "e108f926b7840352e4080ba71914d3403ed8118364f87710e221fdec320ee200",
+    "17-00/08" : "dbcea811efb05fd11e1df4398979c31aa95f20bc415283617943817bf36b6c33"
+} %}
+
+
+{% set version = environ.get('COMMIT_VERSION', None) %}
+{% set version = version or versions.keys()|first %}
+{% set version = version|string %}
+
+package:
+  name: {{ environ.get('ANACONDA_PACKAGE', "qcdnum")|string|lower }}
+  version: {{ environ.get('ANACONDA_VERSION', version)|replace('/', '.')|replace('-', '.') }}
+
+source:
+  url: "https://www.nikhef.nl/~h24/qcdnum-files/download/qcdnum{{ version|replace('.', '')|replace('/', '')|replace('-', '') }}.tar.gz"
+  {% if versions.get(version, None) %}
+  sha256: {{ versions.get(version) }}
+  {% endif %}
+
+requirements:
+  build:
+    - {{ compiler('gfortran') }}   # GNU Fortran compiler
+    - {{ compiler('c') }}          # GNU C compiler
+    - {{ compiler('cxx') }}        # GNU C++ compiler
+    
+    - cmake                        # Build system
+    - make                         # Make utility
+
+about:
+  home: "https://www.nikhef.nl/~h24/qcdnum/index.html"
+  license: "GPL-3.0"
+  summary: "QCDNUM is a very fast QCD evolution program written in FORTRAN77."
+  description: |
+        QCDNUM is a very fast QCD evolution program written in FORTRAN77. 
+        The releases 17-01/14 and higher come with a C++ interface so that QCDNUM routines can be called from a C++ program.
+
+extra:
+  recipe-maintainers:
+    - meiyasan
