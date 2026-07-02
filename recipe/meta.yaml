@@ -31,6 +31,7 @@ requirements:
     
     - cmake                        # Build system
     - make                         # Make utility
+    - gnuconfig
 
 about:
   home: "https://www.nikhef.nl/~h24/qcdnum/index.html"
