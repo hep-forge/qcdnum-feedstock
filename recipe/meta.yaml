@@ -15,7 +15,9 @@ package:
   version: {{ environ.get('ANACONDA_VERSION', version)|replace('/', '.')|replace('-', '.') }}
 
 source:
-  url: "https://www.nikhef.nl/~h24/qcdnum-files/download/qcdnum{{ version|replace('.', '')|replace('/', '')|replace('-', '') }}.tar.gz"
+  # nikhef.nl/~h24 went offline after the author's passing (2024);
+  # hep-mirrors preserves the release tarballs
+  url: "https://github.com/hep-mirrors/qcdnum/raw/master/qcdnum{{ version|replace('.', '')|replace('/', '')|replace('-', '') }}.tar.gz"
   {% if versions.get(version, None) %}
   sha256: {{ versions.get(version) }}
   {% endif %}
