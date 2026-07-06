@@ -16,7 +16,7 @@ QCDNUM is a very fast QCD evolution program written in FORTRAN77.
 | Architecture | Latest published |
 |--------------|------------------|
 | linux-amd64 (`linux-64`) | ✅ `18.00.00` |
-| linux-arm64 (`linux-aarch64`) | ❌ not published |
+| linux-arm64 (`linux-aarch64`) | ✅ `18.00.00` |
 
 _As of the last feedstock render; the badges above are live._
 
